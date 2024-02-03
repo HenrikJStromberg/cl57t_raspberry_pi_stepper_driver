@@ -1,6 +1,6 @@
 #pylint: disable=invalid-name
 """
-CL57T_raspberry_pi_stepper_driver math library
+cl57t_raspberry_pi_stepper_driver math library
 """
 
 

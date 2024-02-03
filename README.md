@@ -1,9 +1,9 @@
-# CL57T_raspberry_pi_stepper_driver
+# Raspberry PI Stepper Driver for CL57T
 
-[![PyPI python version CL57T_raspberry_pi_stepper_driver](https://badgen.net/pypi/python/CL57T_raspberry_pi_stepper_driver)](https://pypi.org/project/CL57T_raspberry_pi_stepper_driver)
-[![PyPI version CL57T_raspberry_pi_stepper_driver](https://badgen.net/pypi/v/CL57T_raspberry_pi_stepper_driver)](https://pypi.org/project/CL57T_raspberry_pi_stepper_driver)
-[![PyPI downloads CL57T_raspberry_pi_stepper_driver](https://img.shields.io/pypi/dm/CL57T_raspberry_pi_stepper_driver)](https://pypi.org/project/CL57T_raspberry_pi_stepper_driver)
-[![GitHub issues](https://img.shields.io/github/issues/iosifnicolae2/CL57T_raspberry_pi_stepper_driver.svg)](https://GitHub.com/iosifnicolae2/CL57T_raspberry_pi_stepper_driver/issues/)
+[![PyPI python version cl57t-raspberry-pi-stepper-drive](https://badgen.net/pypi/python/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
+[![PyPI version cl57t-raspberry-pi-stepper-drive](https://badgen.net/pypi/v/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
+[![PyPI downloads cl57t-raspberry-pi-stepper-drive](https://img.shields.io/pypi/dm/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
+[![GitHub issues](https://img.shields.io/github/issues/iosifnicolae2/cl57t-raspberry-pi-stepper-drive.svg)](https://GitHub.com/iosifnicolae2/cl57t-raspberry-pi-stepper-drive/issues/)
 
 \
 \
@@ -14,19 +14,19 @@ This code is still experimental, so use it on your own risk.
 This library is programmed in pure Python. The performance of Python is not good enough to drive the motor with high speed.
 So if you move the motor with high speed and this library the motor will lose steps.
 
-This library is a fork of [CL57T_raspberry_pi_stepper_driver](https://github.com/iosifnicolae2/CL57T_raspberry_pi_stepper_driver). Please check out this repo for more context.
+This library is a fork of [cl57t-raspberry-pi-stepper-drive](https://github.com/iosifnicolae2/cl57t-raspberry-pi-stepper-drive). Please check out this repo for more context.
 
 the Documentation of the CL57T can be found here:  
 [CL57T - Datsheet](https://www.omc-stepperonline.com/download/CL57T_V4.0.pdf)
 
-The code is also available on [PyPI](https://pypi.org/project/CL57T_raspberry_pi_stepper_driver).
+The code is also available on [PyPI](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive).
 
 ## Installation
 
 ### Installation with PIP
 
 ```shell
-pip3 install CL57T_raspberry_pi_stepper_driver
+pip3 install cl57t-raspberry-pi-stepper-drive
 ```
 
 ## Wiring
@@ -52,7 +52,7 @@ The GPIO pins can be specific when initiating the class.
 test file for testing basic movement
 """
 
-from CL57T_raspberry_pi_stepper_driver.src.CL57T.CL57T_StepperDriver import *
+from cl57t_raspberry_pi_stepper_drive import *
 
 print("---")
 print("SCRIPT START")
@@ -146,7 +146,7 @@ print("---")
 ```
 
 ## Acknowledgements
-This library is a fork of [CL57T_raspberry_pi_stepper_driver](https://github.com/iosifnicolae2/CL57T_raspberry_pi_stepper_driver).
+This library is a fork of [cl57t-raspberry-pi-stepper-drive](https://github.com/iosifnicolae2/cl57t-raspberry-pi-stepper-drive).
 
 The code to run the stepper motor is based on the code of the [AccelStepper Library from Mike McCauley](http://www.airspayce.com/mikem/arduino/AccelStepper).
 
@@ -154,6 +154,6 @@ The main focus for this are Test setups, as Python is not fast enough for high m
 
 ## Feedback/Contributing
 
-If you encounter any problem, feel free to open an issue on the Github [issue page](https://github.com/iosifnicolae2/CL57T_raspberry_pi_stepper_driver/issues).
+If you encounter any problem, feel free to open an issue on the Github [issue page](https://github.com/iosifnicolae2/cl57t-raspberry-pi-stepper-drive/issues).
 Feedback will keep this project growing and I encourage all suggestions.
 Feel free to submit a pull request on the dev branch.
