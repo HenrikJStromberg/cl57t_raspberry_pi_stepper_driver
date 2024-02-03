@@ -21,7 +21,7 @@ from ._CL57T_move import MovementAbsRel, MovementPhase, StopMode
 
 
 
-class CL57T:
+class CL57TStepperDriver:
     """CL57T
 
     this class has two different functions:

@@ -52,7 +52,7 @@ The GPIO pins can be specific when initiating the class.
 test file for testing basic movement
 """
 
-from cl57t_raspberry_pi_stepper_drive import *
+from cl57.CL57TStepperDriver import *
 
 print("---")
 print("SCRIPT START")
@@ -69,7 +69,7 @@ print("---")
 # initiate the CL57T class
 # use your pins for pin_en, pin_step, pin_dir here
 #-----------------------------------------------------------------------
-stepper = CL57T(
+stepper = CL57TStepperDriver(
     pin_en=19, # GPIO 19 (pin 35): ENA
     pin_step=6, # GPIO 6 (pin 31): PUL/STEP
     pin_dir=13, # GPIO 13 (pin 33): DIR
@@ -146,7 +146,8 @@ print("---")
 ```
 
 ## Acknowledgements
-This library is a fork of [cl57t-raspberry-pi-stepper-drive](https://github.com/iosifnicolae2/cl57t-raspberry-pi-stepper-drive).
+This library is a fork of [TMC2209_Raspberry_Pi
+](https://github.com/Chr157i4n/TMC2209_Raspberry_Pi).
 
 The code to run the stepper motor is based on the code of the [AccelStepper Library from Mike McCauley](http://www.airspayce.com/mikem/arduino/AccelStepper).
 
