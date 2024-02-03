@@ -1,9 +1,9 @@
 # Raspberry PI Stepper Driver for CL57T
 
-[![PyPI python version cl57t-raspberry-pi-stepper-drive](https://badgen.net/pypi/python/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
-[![PyPI version cl57t-raspberry-pi-stepper-drive](https://badgen.net/pypi/v/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
-[![PyPI downloads cl57t-raspberry-pi-stepper-drive](https://img.shields.io/pypi/dm/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
-[![GitHub issues](https://img.shields.io/github/issues/iosifnicolae2/cl57t-raspberry-pi-stepper-drive.svg)](https://GitHub.com/iosifnicolae2/cl57t-raspberry-pi-stepper-drive/issues/)
+[![PyPI python version TMC-2209-Raspberry-Pi](https://badgen.net/pypi/python/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
+[![PyPI version TMC-2209-Raspberry-Pi](https://badgen.net/pypi/v/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
+[![PyPI downloads TMC-2209-Raspberry-Pi](https://img.shields.io/pypi/dm/cl57t-raspberry-pi-stepper-drive)](https://pypi.org/project/cl57t-raspberry-pi-stepper-drive)
+[![GitHub issues](https://img.shields.io/github/issues/iosifnicolae2/cl57t_raspberry_pi_stepper_driver.svg)](https://GitHub.com/iosifnicolae2/cl57t_raspberry_pi_stepper_driver/issues/)
 
 \
 \
