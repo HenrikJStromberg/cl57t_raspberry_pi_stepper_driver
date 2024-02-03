@@ -52,7 +52,7 @@ The GPIO pins can be specific when initiating the class.
 test file for testing basic movement
 """
 
-from cl57.CL57TStepperDriver import *
+from CL57T.CL57TStepperDriver import *
 
 print("---")
 print("SCRIPT START")
