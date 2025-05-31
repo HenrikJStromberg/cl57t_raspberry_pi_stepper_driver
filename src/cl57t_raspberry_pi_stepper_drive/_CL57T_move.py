@@ -172,22 +172,8 @@ def get_movement_phase(self):
     return self._movement_phase
 
 
-def run_to_position_steps(self, steps, movement_abs_rel = MovementAbsRel.ABSOLUTE, stop_condition = None):
-    """runs the motor to the given position.
-    with acceleration and deceleration
-    blocks the code until finished or stopped from a different thread!
-    returns true when the movement if finshed normally and false,
-    when the movement was stopped
-
-    Args:
-        steps (int): amount of steps; can be negative
-        movement_abs_rel (enum): whether the movement should be absolut or relative
-            (Default value = None)
-        stop_condition: a function that stops the run
-
-    Returns:
-        stop (enum): how the movement was finished
-    """
+def _run_to_position_steps_blocking(self, steps, movement_abs_rel = MovementAbsRel.ABSOLUTE, stop_condition = None):
+    """Internal helper that performs a blocking move."""
     if movement_abs_rel == MovementAbsRel.RELATIVE:
         self._target_pos = self._current_pos + steps
     else:
@@ -198,12 +184,50 @@ def run_to_position_steps(self, steps, movement_abs_rel = MovementAbsRel.ABSOLUT
     self._speed = 0.0
     self._n = 0
     self.compute_new_speed()
-    while self.run(): #returns false, when target position is reached
+    while self.run():
         if self._stop == StopMode.HARDSTOP or (stop_condition is not None and stop_condition()):
             break
 
     self._movement_phase = MovementPhase.STANDSTILL
     return self._stop
+
+
+def run_to_position_steps(self, steps, movement_abs_rel = MovementAbsRel.ABSOLUTE, stop_condition = None, blocking = True):
+    """Run the motor to the given position.
+    With acceleration and deceleration. By default the call is **blocking** and
+    the method returns only once the movement has finished or :func:`stop` has
+    been called.  Passing ``blocking=False`` will start the movement in a
+    background thread and return immediately.  The movement can then be aborted
+    from another thread by calling :func:`stop`.
+
+    Args:
+        steps (int): amount of steps; can be negative.
+        movement_abs_rel (MovementAbsRel): whether the movement should be
+            absolute or relative.
+        stop_condition (Callable): optional function that stops the run when it
+            evaluates to ``True``.
+        blocking (bool): when ``True`` the function blocks until finished.
+
+    Returns:
+        threading.Thread | StopMode: if ``blocking`` is ``False`` the created
+        thread handling the movement is returned.  When ``blocking`` is
+        ``True`` the :class:`StopMode` with which the movement finished is
+        returned.
+    """
+
+    if blocking:
+        return _run_to_position_steps_blocking(self, steps, movement_abs_rel, stop_condition)
+
+    if self._movement_thread and self._movement_thread.is_alive():
+        raise RuntimeError("Movement already running")
+
+    self._movement_thread = threading.Thread(
+        target=_run_to_position_steps_blocking,
+        args=(self, steps, movement_abs_rel, stop_condition),
+        daemon=True,
+    )
+    self._movement_thread.start()
+    return self._movement_thread
 
 
 def run_to_position_mm(self, mm, movement_abs_rel = MovementAbsRel.ABSOLUTE):
@@ -228,7 +252,7 @@ def run_to_position_mm(self, mm, movement_abs_rel = MovementAbsRel.ABSOLUTE):
 
     target_position_steps = round(target_position_steps)
     print(f"target_position_steps: {target_position_steps}")
-    return self.run_to_position_steps(target_position_steps, movement_abs_rel = MovementAbsRel.ABSOLUTE)
+    return self.run_to_position_steps(target_position_steps, movement_abs_rel = MovementAbsRel.ABSOLUTE, blocking=True)
 
 
 def run_to_position_revolutions(self, revolutions, movement_abs_rel = MovementAbsRel.ABSOLUTE):
@@ -244,28 +268,17 @@ def run_to_position_revolutions(self, revolutions, movement_abs_rel = MovementAb
         stop (enum): how the movement was finished
     """
     return self.run_to_position_steps(round(revolutions * self._steps_per_rev),
-                                        movement_abs_rel)
+                                        movement_abs_rel, blocking=True)
 
 
 
 def run_to_position_steps_threaded(self, steps, movement_abs_rel = MovementAbsRel.ABSOLUTE):
-    """runs the motor to the given position.
-    with acceleration and deceleration
-    does not block the code
-    returns true when the movement if finshed normally and false,
-    when the movement was stopped
+    """Backward compatible wrapper around :func:`run_to_position_steps`.
 
-    Args:
-        steps (int): amount of steps; can be negative
-        movement_abs_rel (enum): whether the movement should be absolut or relative
-            (Default value = None)
-
-    Returns:
-        stop (enum): how the movement was finished
+    The method simply calls :func:`run_to_position_steps` with
+    ``blocking=False`` and returns the created thread.
     """
-    self._movement_thread = threading.Thread(target=self.run_to_position_steps,
-                                                args=(steps, movement_abs_rel))
-    self._movement_thread.start()
+    return self.run_to_position_steps(steps, movement_abs_rel, blocking=False)
 
 
 

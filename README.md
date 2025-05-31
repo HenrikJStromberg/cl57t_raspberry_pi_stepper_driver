@@ -109,6 +109,11 @@ stepper.run_to_position_mm(1000)
 
 stepper.run_to_position_mm(400)
 
+``run_to_position_steps`` blocks until the movement is finished.  Pass
+``blocking=False`` to start the movement in a background thread and return
+immediately. Call :py:meth:`stop` from another thread to abort the movement or
+use ``wait_for_movement_finished_threaded()`` to wait for it to finish.
+
 
 #-----------------------------------------------------------------------
 # move the motor 1 revolution

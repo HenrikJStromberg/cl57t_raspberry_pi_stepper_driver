@@ -198,11 +198,12 @@ class CL57TStepperDriver:
                 self.run_to_position_steps(
                     999999999,
                     movement_abs_rel=MovementAbsRel.RELATIVE,
-                    stop_condition=lambda : homing_sensor_value() is False
+                    stop_condition=lambda : homing_sensor_value() is False,
+                    blocking=True,
                 )
 
                 self.cl57t_logger.log("moving back a bit more", Loglevel.INFO)
-                self.run_to_position_steps(50, movement_abs_rel=MovementAbsRel.RELATIVE)
+                self.run_to_position_steps(50, movement_abs_rel=MovementAbsRel.RELATIVE, blocking=True)
 
         do_not_touch_homing_sensor()
 
@@ -210,7 +211,8 @@ class CL57TStepperDriver:
         self.run_to_position_steps(
             -999999999,
             movement_abs_rel=MovementAbsRel.RELATIVE,
-            stop_condition=lambda : homing_sensor_value() is True
+            stop_condition=lambda : homing_sensor_value() is True,
+            blocking=True,
         )
         self.cl57t_logger.log("first homing reached", Loglevel.INFO)
 
@@ -222,7 +224,8 @@ class CL57TStepperDriver:
         self.run_to_position_steps(
             -999999999,
             movement_abs_rel=MovementAbsRel.RELATIVE,
-            stop_condition=lambda : homing_sensor_value() is True
+            stop_condition=lambda : homing_sensor_value() is True,
+            blocking=True,
         )
 
         self.cl57t_logger.log("second homing reached", Loglevel.INFO)
