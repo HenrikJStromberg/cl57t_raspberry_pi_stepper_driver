@@ -109,9 +109,6 @@ stepper.run_to_position_mm(1000)
 
 stepper.run_to_position_mm(400)
 
-immediately. Call :py:meth:`stop` from another thread to abort the movement or
-join the returned thread to wait for it to finish.
-
 
 #-----------------------------------------------------------------------
 # move the motor 1 revolution
